@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Scaffolding tool for new apps",
   "author": "Anton Borsch <anton.borsch@gmail.com>",
-  "scripts": {
-    "config": "node ./lib/createConfig.js"
-  },
   "homepage": "https://github.com/Oversan/ugen",
   "repository": {
     "type": "git",
@@ -26,7 +23,6 @@
     "boilerplate",
     "build"
   ],
-  "main": "./index.js",
   "bin": {
     "ugen": "./bin/ugen"
   },
@@ -36,6 +32,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.3",
+    "commander": "^2.9.0",
     "fs-extra": "^0.26.7",
     "glob": "^7.0.3",
     "inquirer": "^1.0.0",
