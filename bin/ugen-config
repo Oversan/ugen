@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+console.log('Ugen config...')
+
+const program = require('commander')
+
+program
+  .option('-s, --src [path]', 'Path for boilerplate folder')
+  .parse(process.argv)
+
