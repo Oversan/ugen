@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const path = require('path')
+const program = require('commander')
+const chalk = require('chalk')
+const isFile = require('../lib/fileHelpers.js').isFile
+const buildApp = require('../lib/buildApp')
+var configPath = path.join(process.cwd(), 'ugen.config.js')
+
+program
+  .option('-c, --config [path]', 'Path for ugen config')
+  .parse(process.argv)
+
+if (program.config && isFile(program.config)) {
+  configPath = program.config
+} else if (!isFile(configPath)) {
+  console.log(chalk.yellow('You should have ugen.config.js in this place or add correct "--config" path'))
+  return false
+}
+
+const config = require(configPath)
+
+buildApp(config)

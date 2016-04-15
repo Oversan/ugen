@@ -6,5 +6,5 @@ const pkg = require('../package')
 program
   .version(pkg.version)
   .command('config', 'Generate ugen.config.js according to prepared boilerplate folder')
-  .command('builder', 'Create generator for new app')
+  .command('build', 'Create generator for new app')
   .parse(process.argv)
