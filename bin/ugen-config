@@ -6,8 +6,8 @@ const path = require('path')
 const program = require('commander')
 const chalk = require('chalk')
 const isDir = require('../lib/fileHelpers.js').isDir
-var boilerplatePath = path.join(process.cwd(), 'boilerplate')
 const createConfig = require('../lib/createConfig')
+var boilerplatePath = path.join(process.cwd(), 'boilerplate')
 
 program
   .option('-s, --src [path]', 'Path for boilerplate folder')
@@ -19,3 +19,5 @@ if (program.src && isDir(program.src)) {
   console.log(chalk.yellow('You should have "boilerplate" folder in this place or add correct "--src"'))
   return false
 }
+
+createConfig(boilerplatePath)
