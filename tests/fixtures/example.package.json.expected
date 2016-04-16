@@ -1,0 +1,20 @@
+{
+  "name": "NewApp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "application.js",
+  "engines": {
+    "npm": "^3.6.0",
+    "node": "^5.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apporg/appname"
+  },
+  "author": "",
+  "license": "MTI",
+  "bugs": {
+    "url": "https://github.com/apporg/appname/issues"
+  },
+  "homepage": "http://NewApp.example.com)"
+}
