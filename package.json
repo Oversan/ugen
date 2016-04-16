@@ -27,6 +27,8 @@
     "ugen": "./bin/ugen"
   },
   "scripts": {
+    "coverage-report": "open coverage/lcov-report/index.html",
+    "coverage": "istanbul cover _mocha './tests/**/*.test.js' --include-all-sources true",
     "test": "./node_modules/.bin/mocha './tests/**/*.test.js' --full-trace --recursive"
   },
   "engines": {
@@ -47,6 +49,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
+    "istanbul": "^0.4.3",
     "mocha": "^2.4.5",
     "mocha-lcov-reporter": "^1.2.0"
   }
