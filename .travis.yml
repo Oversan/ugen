@@ -6,3 +6,6 @@ node_js:
 script: npm run coverage
 after_script:
   - codeclimate-test-reporter < coverage/lcov.info
+addons:
+  code_climate:
+    repo_token: 75937a8e785a7a8a5ae77406ab86398c3bb39ba558988fc38f64ae478478deb4
