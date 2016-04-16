@@ -26,6 +26,9 @@
   "bin": {
     "ugen": "./bin/ugen"
   },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha './tests/**/*.test.js' --full-trace --recursive"
+  },
   "engines": {
     "node": ">=4.2.0"
   },
@@ -40,5 +43,9 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "validator": "^5.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
   }
 }
