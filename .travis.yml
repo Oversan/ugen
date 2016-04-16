@@ -3,3 +3,7 @@ language: node_js
 node_js:
   - stable
   - v4.2
+after_success:
+  - coveralls
+after_script:
+  - codeclimate-test-reporter < lcov.info
