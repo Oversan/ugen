@@ -5,15 +5,15 @@ const expect = require('chai').expect
 const fixturesPath = path.join(process.cwd(), './tests/fixtures')
 const boilerplatePath = path.join(process.cwd(), './tests/fixtures/boilerplate')
 const createConfig = require('../lib/createConfig.js')
+const loadFile = require('../lib/fileHelpers.js').loadFile
 
 describe('createConfig()', () => {
   it('should create config from path with boilerplate folder without templates', () => {
     process.chdir('./tests/fixtures')
     createConfig(boilerplatePath)
-    const resultData = require(path.join(process.cwd(), './ugen.config.js'))
-    const correctData = require(path.join(process.cwd(), './expected.ugen.config.js'))
-    expect(JSON.stringify(resultData)).to.be.eql(JSON.stringify(correctData))
-    process.chdir('../../')
-    fs.unlinkSync('./tests/fixtures/ugen.config.js')
+    const resultData = require(path.join(process.cwd(), 'ugen.config.js'), 'utf-8')
+    const correctData = require(path.join(process.cwd(), 'expected.ugen.config.js'), 'utf-8')
+    expect(resultData).to.be.eql(correctData)
+    fs.unlinkSync(path.join(process.cwd(), 'ugen.config.js'))
   })
 })
