@@ -13,8 +13,9 @@ describe('createConfig()', () => {
     createConfig(boilerplatePath, () => {
       const resultData = require(path.join(process.cwd(), 'ugen.config.js'), 'utf-8')
       expect(resultData).to.be.an('object')
-      done()
+      expect(resultData['templatesVariables']).to.deep.equal([])
       fs.unlinkSync(path.join(process.cwd(), 'ugen.config.js'))
+      done()
     })
   })
 })
