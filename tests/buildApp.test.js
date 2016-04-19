@@ -2,7 +2,6 @@ const path = require('path')
 const fs = require('fs-extra')
 const currentCwd = process.cwd()
 const expect = require('chai').expect
-const sinon = require('sinon')
 const buildApp = require('../lib/buildApp.js')
 const config = require('./fixtures/oneTemplate/ugen.config.js')
 const bddStdin = require('bdd-stdin')
