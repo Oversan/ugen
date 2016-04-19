@@ -53,6 +53,7 @@
     "validator": "^5.2.0"
   },
   "devDependencies": {
+    "bdd-stdin": "^0.2.0",
     "chai": "^3.5.0",
     "codeclimate-test-reporter": "^0.3.1",
     "fs-extra": "^0.26.7",
