@@ -16,7 +16,7 @@ it('should create correct answers object and file structure', function(done) {
     const config = require(ugenConfigPath)
     const expectedAnswers = { ENV_HOME: 'AppHomeDir' }
     const procfilePath = path.join(process.cwd(), 'Procfile')
-    const karmaPath = path.join(process.cwd(), 'Karma.conf.js')
+    const karmaPath = path.join(process.cwd(), 'karma.conf.js')
     const gulpPath = path.join(process.cwd(), 'gulpfile.js')
     const configPath = path.join(process.cwd(), 'config')
 
