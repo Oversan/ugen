@@ -6,18 +6,17 @@ const buildApp = require('../lib/buildApp.js')
 const createConfig = require('../lib/createConfig.js')
 const bddStdin = require('bdd-stdin')
 const currentCwd = process.cwd()
+const archiveFolderPath = path.join(process.cwd(), './tests/fixtures/archiveBoilerplate')
 
 it('should create correct answers object and file structure', function(done) {
-  const archiveFolderPath = path.join(process.cwd(), './tests/fixtures/oneTemplate/boilerplate')
-  const appFolderPath = path.join(process.cwd(), './tests/fixtures/autoGenBoilerplate')
-  const boilerplateFolderPath = path.join(appFolderPath, './boilerplate')
   const files = ['Procfile',
                  'karma.conf.js',
                  'gulpfile.js',
-                 'config']
+                 'config/nginx.conf.template']
 
-  makeTestFolder(archiveFolderPath, appFolderPath, files)
-  process.chdir(appFolderPath)
+  const testFolderPath = makeTestFolder(archiveFolderPath, files)
+  const boilerplateFolderPath = path.join(testFolderPath, 'boilerplate')
+  process.chdir(testFolderPath)
 
   createConfig(boilerplateFolderPath, () => {
     const ugenConfigPath = path.join(process.cwd(), 'ugen.config.js')
@@ -27,7 +26,7 @@ it('should create correct answers object and file structure', function(done) {
     bddStdin('AppHomeDir\n')
     buildApp(config).then((answers) => {
       expect(answers).to.be.deep.equal(expectedAnswers)
-      fs.removeSync(appFolderPath)
+      fs.removeSync(testFolderPath)
       done()
     }).catch((err) => {console.log(`Test error ${err}`)})
     process.chdir(currentCwd)

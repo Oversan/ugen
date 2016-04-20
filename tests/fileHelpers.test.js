@@ -41,8 +41,8 @@ describe('File helpers', () => {
   })
 
   describe('loadFile()', () => {
-    const examplePath = path.join(process.cwd(), './tests/fixtures/archive/foo.md')
-    const expectedText = '# Test file with some header\n'
+    const examplePath = path.join(process.cwd(), './tests/fixtures/archiveBoilerplate/readme.md')
+    const expectedText = '# This is README.md file\n'
     const data = loadFile(examplePath)
 
     it('should load file content', () => {
@@ -56,7 +56,7 @@ describe('File helpers', () => {
 
   describe('writeFile()', () => {
     const examplePath = path.join(process.cwd(), './tests/fixtures/fileExample.md')
-    const exampleText = '# Test file with some header\n'
+    const exampleText = '# This is README.md file\n'
 
     it('should create file with content', () => {
       const file = writeFile(examplePath, exampleText)
@@ -73,20 +73,20 @@ describe('File helpers', () => {
 
   describe('appendFile()', () => {
     const examplePath = path.join(process.cwd(), './tests/fixtures/fileExample.md')
-    const exampleText = '# Test file with some header\n'
+    const exampleText = '# This is README.md file\n'
     const newLine = 'Begining of text\n'
 
     it('should append new line into file with content', () => {
       const file = writeFile(examplePath, exampleText)
       appendFile(examplePath, newLine)
-      expect(loadFile(examplePath)).to.be.eql('# Test file with some header\nBegining of text\n')
+      expect(loadFile(examplePath)).to.be.eql('# This is README.md file\nBegining of text\n')
       fs.unlinkSync(examplePath)
     })
   })
 
   describe('loadFiles()', () => {
-    const examplePath = path.join(process.cwd(), './tests/fixtures/archive')
-    const expectedFiles = ['bar.md', 'foo.md']
+    const examplePath = path.join(process.cwd(), './tests/fixtures/archiveBoilerplate/config')
+    const expectedFiles = ['htpasswd.template', 'nginx.conf.template']
 
     it('should return array with filenames in folder', () => {
       const files = loadFiles(examplePath)
@@ -95,8 +95,8 @@ describe('File helpers', () => {
   })
 
   describe('isDir()', () => {
-    const exampleDirPath = path.join(process.cwd(), './tests/fixtures/archive')
-    const exampleFilePath = path.join(process.cwd(), './tests/fixtures/archive/foo.md')
+    const exampleDirPath = path.join(process.cwd(), './tests/fixtures/archiveBoilerplate')
+    const exampleFilePath = path.join(process.cwd(), './tests/fixtures/archiveBoilerplate/readme.md')
 
     it('should return true when check valid dir path', () => {
       expect(isDir(exampleDirPath)).to.be.true
@@ -108,8 +108,8 @@ describe('File helpers', () => {
   })
 
   describe('isFile()', () => {
-    const exampleDirPath = path.join(process.cwd(), './tests/fixtures/archive')
-    const exampleFilePath = path.join(process.cwd(), './tests/fixtures/archive/foo.md')
+    const exampleDirPath = path.join(process.cwd(), './tests/fixtures/archiveBoilerplate')
+    const exampleFilePath = path.join(process.cwd(), './tests/fixtures/archiveBoilerplate/readme.md')
 
     it('should return false when check valid dir path', () => {
       expect(isFile(exampleDirPath)).to.be.false
