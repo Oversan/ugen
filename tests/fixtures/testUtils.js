@@ -3,8 +3,9 @@ const path = require('path')
 const glob = require('glob')
 
 function makeTestFolder(archiveFolderPath, filesArray, appFolderPath) {
-  const appPath = appFolderPath || path.join(process.cwd(), './tests/fixtures/autoGenBoilerplate')
-  const testFolderPath = fs.mkdtempSync(appPath)
+  const testFolderPath = appFolderPath || path.join(process.cwd(), `./tests/fixtures/autoGenBoilerplate`) + Math.trunc(Math.random()*1000000).toString()
+
+  fs.mkdirSync(testFolderPath)
 
   const globOptions = {
     cwd: archiveFolderPath,

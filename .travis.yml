@@ -2,7 +2,7 @@ sudo: false
 language: node_js
 node_js:
   - stable
-  - v4.2
+  - v4.4.3
 script: npm run coverage
 after_script:
   - codeclimate-test-reporter < coverage/lcov.info
