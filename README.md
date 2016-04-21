@@ -31,7 +31,11 @@ Config presented in json format. One of the properties of this config is "questi
 ## Build app from package
 
 ```sh
+  # Inside of Ugen package
   ugen build
+
+  # After that you can remove 'boilerplate' folder from app
+  rm -rf boilerplate
 ```
 
 ## License
