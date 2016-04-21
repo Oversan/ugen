@@ -1,5 +1,5 @@
 # Ugen
-[![Build Status](https://travis-ci.org/Oversan/ugen.svg?branch=master)](https://travis-ci.org/Oversan/ugen) [![Code Climate](https://codeclimate.com/github/Oversan/ugen/badges/gpa.svg)](https://codeclimate.com/github/Oversan/ugen) [![Test Coverage](https://codeclimate.com/github/Oversan/ugen/badges/coverage.svg)](https://codeclimate.com/github/Oversan/ugen/coverage)
+[![Build Status](https://travis-ci.org/Oversan/ugen.svg?branch=master)](https://travis-ci.org/Oversan/ugen) [![Code Climate](https://codeclimate.com/github/Oversan/ugen/badges/gpa.svg)](https://codeclimate.com/github/Oversan/ugen) [![Test Coverage](https://codeclimate.com/github/Oversan/ugen/badges/coverage.svg)](https://codeclimate.com/github/Oversan/ugen/coverage) [![npm](https://img.shields.io/npm/v/ugen.svg?maxAge=2592000)]()
 
 CLI tool for scaffolding new apps.
 
