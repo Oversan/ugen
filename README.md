@@ -5,22 +5,22 @@ CLI tool for scaffolding new apps.
 
 ## Install
 
-```shell
+```sh
   npm i -g ugen
 ```
 
 ## Create Ugen package
 
-```shell
-  // Create package folder
+```sh
+  # Create package folder
   mkdir appName && cd appName
 
-  // Copy any files and templates in folder 'boilerplate'
-  // Template file must have *.template extension
-  // Inside of template should be tags like <% TAG_NAME %>
+  # Copy any files and templates in folder 'boilerplate'
+  # Template file must have *.template extension
+  # Inside of template should be tags like <% TAG_NAME %>
   mkdir boilerplate && cp some_dir/* ./boilerpalate
 
-  // Create ugen.config.js
+  # Create ugen.config.js
   ugen config
 ```
 
@@ -30,7 +30,7 @@ Config presented in json format. One of the properties of this config is "questi
 
 ## Build app from package
 
-```shell
+```sh
   ugen build
 ```
 
