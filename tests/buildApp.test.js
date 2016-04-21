@@ -8,28 +8,80 @@ const bddStdin = require('bdd-stdin')
 const currentCwd = process.cwd()
 const archiveFolderPath = path.join(process.cwd(), './tests/fixtures/archiveBoilerplate')
 
-it('should create correct answers object and file structure', function(done) {
-  const files = ['Procfile',
-                 'karma.conf.js',
-                 'gulpfile.js',
-                 'config/nginx.conf.template']
+describe('buildApp()', () => {
+  it('should create correct answers object and file structure with one template', (done) => {
+    const files = ['Procfile',
+                   'karma.conf.js',
+                   'gulpfile.js',
+                   'config/nginx.conf.template']
 
-  const testFolderPath = makeTestFolder(archiveFolderPath, files)
-  const boilerplateFolderPath = path.join(testFolderPath, 'boilerplate')
-  process.chdir(testFolderPath)
+    const testFolderPath = makeTestFolder(archiveFolderPath, files)
+    const boilerplateFolderPath = path.join(testFolderPath, 'boilerplate')
+    process.chdir(testFolderPath)
 
-  createConfig(boilerplateFolderPath, () => {
-    const ugenConfigPath = path.join(process.cwd(), 'ugen.config.js')
-    const config = require(ugenConfigPath)
-    const expectedAnswers = { ENV_HOME: 'AppHomeDir' }
+    createConfig(boilerplateFolderPath, () => {
+      const ugenConfigPath = path.join(process.cwd(), 'ugen.config.js')
+      const config = require(ugenConfigPath)
+      const expectedAnswers = { ENV_HOME: 'AppHomeDir' }
 
-    bddStdin('AppHomeDir\n')
-    buildApp(config).then((answers) => {
-      expect(answers).to.be.deep.equal(expectedAnswers)
-      fs.removeSync(testFolderPath)
-      done()
-    }).catch((err) => {console.log(`Test error ${err}`)})
-    process.chdir(currentCwd)
+      bddStdin('AppHomeDir\n')
+      buildApp(config).then((answers) => {
+        expect(answers).to.be.deep.equal(expectedAnswers)
+        fs.removeSync(testFolderPath)
+        done()
+      }).catch((err) => {console.log(`Test error ${err}`)})
+      process.chdir(currentCwd)
+    })
   })
 
+  it('should create correct answers object and file structure with multiple templates', (done) => {
+    const testFolderPath = makeTestFolder(archiveFolderPath)
+    const boilerplateFolderPath = path.join(testFolderPath, 'boilerplate')
+    process.chdir(testFolderPath)
+
+    createConfig(boilerplateFolderPath, () => {
+      const ugenConfigPath = path.join(process.cwd(), 'ugen.config.js')
+      const config = require(ugenConfigPath)
+      const expectedAnswers = {'USERNAME:ENCRYPTED_PASSWORD_FOR_BASIC_AUTH': 'Djo Dow',
+                               'ENV_HOME': 'AppHomeDir'}
+
+      bddStdin('Djo Dow\n', 'AppHomeDir\n')
+      buildApp(config).then((answers) => {
+        expect(answers).to.be.deep.equal(expectedAnswers)
+        fs.removeSync(testFolderPath)
+        done()
+      }).catch((err) => {console.log(`Test error ${err}`)})
+      process.chdir(currentCwd)
+    })
+  })
+
+  it('should create file structure without templates', (done) => {
+    const files = ['Procfile',
+                   'karma.conf.js',
+                   'gulpfile.js']
+    const testFolderPath = makeTestFolder(archiveFolderPath, files)
+    const boilerplateFolderPath = path.join(testFolderPath, 'boilerplate')
+    process.chdir(testFolderPath)
+
+    createConfig(boilerplateFolderPath, () => {
+      const ugenConfigPath = path.join(process.cwd(), 'ugen.config.js')
+      const config = require(ugenConfigPath)
+
+      buildApp(config)
+
+      const expectedFiles = fs.readdirSync(testFolderPath)
+      const resultFiles = ['boilerplate',
+                           'Procfile',
+                           'karma.conf.js',
+                           'gulpfile.js',
+                           'ugen.config.js']
+
+      expect(expectedFiles.length).to.be.equal(resultFiles.length)
+      expect(expectedFiles).to.include.members(resultFiles)
+
+      fs.removeSync(testFolderPath)
+      process.chdir(currentCwd)
+      done()
+    })
+  })
 })
