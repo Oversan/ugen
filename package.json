@@ -26,6 +26,10 @@
   "bin": {
     "ugen": "./bin/ugen"
   },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
   "config": {
     "ghooks": {
       "pre-push": "npm run coverage && npm run codeclimate-coverage-push"
