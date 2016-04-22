@@ -38,5 +38,20 @@ Config presented in json format. One of the properties of this config is "questi
   rm -rf boilerplate
 ```
 
+## Demo
+
+[![](https://raw.githubusercontent.com/Oversan/ugen/master/example/demo.gif)]()
+
+## Try Example
+
+```sh
+  npm i -g ugen
+  git clone git@github.com:Oversan/ugen.git && cd ugen/example
+  ugen config
+  ugen build
+  # rm -rf ./boilerplate
+  npm i
+```
+
 ## License
 [MIT license](https://opensource.org/licenses/MIT)
