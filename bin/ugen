@@ -7,4 +7,5 @@ program
   .version(pkg.version)
   .command('config', 'Generate ugen.config.js according to prepared boilerplate folder')
   .command('build', 'Create generator for new app')
+  .command('clear', 'Clear current folder except "boilerplate" and "ugen.config.js"')
   .parse(process.argv)

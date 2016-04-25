@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+const glob = require('glob')
+const fs = require('fs-extra')
+const path = require('path')
+const program = require('commander')
+const chalk = require('chalk')
+const boilerplatePath = path.join(process.cwd(), 'boilerplate')
+const ugenConfigPath = path.join(process.cwd(), 'ugen.config.js')
+
+
+program
+  .parse(process.argv)
+
+const options = {
+  cwd: process.cwd(),
+  dot: true,
+  ignore: ['boilerplate', '**/boilerplate/**/*', 'ugen.config.js']
+}
+
+glob('**/*', options, function(err, files) {
+  files.forEach((file) => {
+    fs.remove(file)
+  })
+  console.log(chalk.yellow('Current folder is clear except "boilerplate" and "ugen.config.js"'))
+})
