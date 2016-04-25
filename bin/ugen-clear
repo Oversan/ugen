@@ -15,12 +15,12 @@ program
 const options = {
   cwd: process.cwd(),
   dot: true,
-  ignore: ['boilerplate', '**/boilerplate/**/*', 'ugen.config.js']
+  ignore: ['node_modules', '**/node_modules/**/*', 'boilerplate', '**/boilerplate/**/*', 'ugen.config.js']
 }
 
 glob('**/*', options, function(err, files) {
   files.forEach((file) => {
     fs.remove(file)
   })
-  console.log(chalk.yellow('Current folder is clear except "boilerplate" and "ugen.config.js"'))
+  console.log(chalk.yellow('Current folder is clear except "node_modules", boilerplate" and "ugen.config.js"'))
 })
