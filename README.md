@@ -16,12 +16,12 @@ CLI tool for scaffolding new apps.
 
 ```sh
   # Create package folder
-  mkdir appName && cd appName
+  mkdir APP_DIR_NAME && cd APP_DIR_NAME
 
-  # Copy any files and templates in folder 'boilerplate'
+  # Copy some files and templates in folder 'boilerplate'
   # Template file must have *.template extension
-  # Inside of template should be tags like <% TAG_NAME %>
-  mkdir boilerplate && cp some_dir/* ./boilerpalate
+  # There are should be placed tags like <% TAG_NAME %> inside a template
+  mkdir boilerplate && cp SOME_DIR/* ./boilerpalate
 
   # Create ugen.config.js
   ugen config
@@ -29,12 +29,12 @@ CLI tool for scaffolding new apps.
 
 ## Update ugen.config.js if you need
 
-Config presented in json format. One of the properties of this config is "questions". For example, you can add validation function for every question. For this is used [validator.js](https://github.com/chriso/validator.js).
+Config is presented in json format. One of the properties of this config is "questions". For example, you can add validation function for every question. It would be great to use [validator.js](https://github.com/chriso/validator.js) for this purpose.
 
 ## Build app from package
 
 ```sh
-  # Inside of Ugen package
+  # Build app from Ugen package folder
   ugen build
 
   # After that you can remove 'boilerplate' folder from app
