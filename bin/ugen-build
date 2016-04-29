@@ -20,4 +20,4 @@ if (program.config && isFile(program.config)) {
 
 const config = require(configPath)
 
-buildApp(config)
+buildApp(config).catch((err) => {console.log('Errrr', err)})
