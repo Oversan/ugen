@@ -28,9 +28,13 @@ describe('buildApp()', () => {
       buildApp(config).then((answers) => {
         expect(answers).to.be.deep.equal(expectedAnswers)
         fs.removeSync(testFolderPath)
+        process.chdir(currentCwd)
         done()
-      }).catch((err) => {console.log(`Test error ${err}`)})
-      process.chdir(currentCwd)
+      }).catch((err) => {
+        fs.removeSync(testFolderPath)
+        process.chdir(currentCwd)
+        done(err)
+      })
     })
   })
 
@@ -50,8 +54,12 @@ describe('buildApp()', () => {
         expect(answers).to.be.deep.equal(expectedAnswers)
         fs.removeSync(testFolderPath)
         done()
-      }).catch((err) => {console.log(`Test error ${err}`)})
-      process.chdir(currentCwd)
+        process.chdir(currentCwd)
+      }).catch((err) => {
+        fs.removeSync(testFolderPath)
+        process.chdir(currentCwd)
+        done(err)
+      })
     })
   })
 
@@ -67,21 +75,25 @@ describe('buildApp()', () => {
       const ugenConfigPath = path.join(process.cwd(), 'ugen.config.js')
       const config = require(ugenConfigPath)
 
-      buildApp(config)
+      buildApp(config).then(() => {
+        const expectedFiles = fs.readdirSync(testFolderPath)
+        const resultFiles = ['boilerplate',
+                             'Procfile',
+                             'karma.conf.js',
+                             'gulpfile.js',
+                             'ugen.config.js']
 
-      const expectedFiles = fs.readdirSync(testFolderPath)
-      const resultFiles = ['boilerplate',
-                           'Procfile',
-                           'karma.conf.js',
-                           'gulpfile.js',
-                           'ugen.config.js']
+        expect(expectedFiles.length).to.be.equal(resultFiles.length)
+        expect(expectedFiles).to.include.members(resultFiles)
 
-      expect(expectedFiles.length).to.be.equal(resultFiles.length)
-      expect(expectedFiles).to.include.members(resultFiles)
-
-      fs.removeSync(testFolderPath)
-      process.chdir(currentCwd)
-      done()
+        fs.removeSync(testFolderPath)
+        process.chdir(currentCwd)
+        done()
+      }).catch((err) => {
+        fs.removeSync(testFolderPath)
+        process.chdir(currentCwd)
+        done(err)
+      })
     })
   })
 })
